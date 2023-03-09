@@ -12,7 +12,6 @@ import com.example.transfermoneydemo.repository.TransactionEntityRepository;
 
 @Service
 public class TransactionService {
-
   private final AccountService accountService;
   private final TransactionEntityRepository transactionEntityRepository;
 
