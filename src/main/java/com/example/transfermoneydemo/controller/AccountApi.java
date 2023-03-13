@@ -1,4 +1,4 @@
-package com.example.transfermoneydemo.model.controller;
+package com.example.transfermoneydemo.controller;
 
 import java.util.List;
 

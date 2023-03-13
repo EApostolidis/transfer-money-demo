@@ -1,4 +1,4 @@
-package com.example.transfermoneydemo.model.controller;
+package com.example.transfermoneydemo.controller;
 
 import java.util.List;
 
@@ -28,6 +28,11 @@ public class TransactionController implements TransactionApi {
     this.transactionService = transactionService;
   }
 
+  /**
+   * Creates transaction providing the correct data
+   * @param transactionDto {@link TransactionDto}
+   * @return {@link ResponseEntity<TransactionDto>}
+   */
   @Override
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<TransactionDto> createTransaction(@Valid @RequestBody TransactionDto transactionDto) {
@@ -35,6 +40,10 @@ public class TransactionController implements TransactionApi {
     return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
   }
 
+  /**
+   * Retrieves all the transactions
+   * @return {@link ResponseEntity<List<TransactionDto>>}
+   */
   @Override
   @GetMapping
   public ResponseEntity<List<TransactionDto>> fetchTransactions() {

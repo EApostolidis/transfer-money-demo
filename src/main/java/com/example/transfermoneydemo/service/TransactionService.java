@@ -10,6 +10,9 @@ import com.example.transfermoneydemo.model.entity.AccountEntity;
 import com.example.transfermoneydemo.model.entity.TransactionEntity;
 import com.example.transfermoneydemo.repository.TransactionEntityRepository;
 
+/**
+ * Handles the transaction business logic.
+ */
 @Service
 public class TransactionService {
   private final AccountService accountService;
@@ -20,6 +23,10 @@ public class TransactionService {
     this.transactionEntityRepository = transactionEntityRepository;
   }
 
+  /**
+   * Fetches all the transactions transformed to the corresponding dto
+   * @return {@link List<TransactionDto>}
+   */
   public List<TransactionDto> fetchTransactions(){
     return transactionEntityRepository.findAll().stream()
         .map(transaction -> TransactionDto.builder()
@@ -31,6 +38,11 @@ public class TransactionService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Creates a transaction after passing the validations and updates the corresponding accounts
+   * @param transactionDto {@link TransactionDto}
+   * @return {@link TransactionDto}
+   */
   public TransactionDto createTransaction(TransactionDto transactionDto) {
     AccountEntity sourceAccount = accountService.getAccountById(transactionDto.getSourceAccountId());
     AccountEntity targetAccount = accountService.getAccountById(transactionDto.getTargetAccountId());

@@ -1,5 +1,7 @@
 package com.example.transfermoneydemo.model.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class AccountDto {
+  @NotNull
   private Double balance;
-
+  @NotNull
   private String currency;
 }

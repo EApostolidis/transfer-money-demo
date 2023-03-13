@@ -1,4 +1,4 @@
-package com.example.transfermoneydemo.model.controller;
+package com.example.transfermoneydemo.controller;
 
 import java.util.List;
 
@@ -29,6 +29,10 @@ public class AccountController implements AccountApi {
     this.accountService = accountService;
   }
 
+  /**
+   * Retrieves all accounts
+   * @return {@link ResponseEntity<List<AccountDto>>}
+   */
   @Override
   @GetMapping
   public ResponseEntity<List<AccountDto>> fetchAll() {
@@ -36,6 +40,11 @@ public class AccountController implements AccountApi {
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 
+  /**
+   * Creates account providing the correct data
+   * @param accountDto {@link AccountDto}
+   * @return {@link ResponseEntity<AccountEntity>}
+   */
   @Override
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountEntity> createAccount(@Valid @RequestBody AccountDto accountDto) {

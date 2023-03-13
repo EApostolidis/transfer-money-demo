@@ -1,9 +1,6 @@
 package com.example.transfermoneydemo.model.dto;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-
-import com.example.transfermoneydemo.model.entity.AccountEntity;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,11 +13,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TransactionDto {
 
+  @NotNull
   private Double amount;
-
+  @NotNull
   private String currency;
-
+  @NotNull
   private Long sourceAccountId;
-
+  @NotNull
   private Long targetAccountId;
 }

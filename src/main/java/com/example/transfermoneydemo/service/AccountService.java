@@ -12,6 +12,9 @@ import com.example.transfermoneydemo.model.dto.AccountDto;
 import com.example.transfermoneydemo.model.entity.AccountEntity;
 import com.example.transfermoneydemo.repository.AccountEntityRepository;
 
+/**
+ * Handles the account business logic.
+ */
 @Service
 public class AccountService {
 
@@ -21,6 +24,10 @@ public class AccountService {
     this.accountEntityRepository = accountEntityRepository;
   }
 
+  /**
+   * Fetches all the accounts transformed to the corresponding dto.
+   * @return {@link List<AccountDto>}
+   */
   public List<AccountDto> fetchAccounts() {
     return accountEntityRepository.findAll().stream()
         .map(account -> AccountDto.builder()
@@ -30,6 +37,11 @@ public class AccountService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Created the account entity.
+   * @param accountDto {@link AccountDto}
+   * @return {@link AccountEntity}
+   */
   public AccountEntity createAccount(AccountDto accountDto) {
     AccountEntity accountEntity = new AccountEntity();
     accountEntity.setCreatedAt(LocalDateTime.now());
@@ -39,6 +51,11 @@ public class AccountService {
     return accountEntityRepository.save(accountEntity);
   }
 
+  /**
+   * Fetches the account with the id given as input
+   * @param id the account id
+   * @return {@link AccountEntity}
+   */
   public AccountEntity getAccountById(Long id) {
     Optional<AccountEntity> accountEntity = accountEntityRepository.findById(id);
     if (accountEntity.isEmpty()) {
@@ -48,6 +65,11 @@ public class AccountService {
     return accountEntity.get();
   }
 
+  /**
+   * Updates the account data making some validations
+   * @param accountEntity {@link AccountEntity}
+   * @return
+   */
   public AccountEntity updateAccount(AccountEntity accountEntity) {
     checkAccountBalance(accountEntity.getBalance());
     return accountEntityRepository.save(accountEntity);
